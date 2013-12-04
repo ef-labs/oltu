@@ -21,9 +21,7 @@
 
 package org.apache.oltu.oauth2.as.response;
 
-
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 
@@ -38,7 +36,7 @@ public class OAuthASResponse extends OAuthResponse {
         super(uri, responseStatus);
     }
 
-    public static OAuthAuthorizationResponseBuilder authorizationResponse(HttpServletRequest request,int code) {
+    public static OAuthAuthorizationResponseBuilder authorizationResponse(HttpRequest request,int code) {
         return new OAuthAuthorizationResponseBuilder(request,code);
     }
 
@@ -48,7 +46,7 @@ public class OAuthASResponse extends OAuthResponse {
 
     public static class OAuthAuthorizationResponseBuilder extends OAuthResponseBuilder {
 
-        public OAuthAuthorizationResponseBuilder(HttpServletRequest request,int responseCode) {
+        public OAuthAuthorizationResponseBuilder(HttpRequest request,int responseCode) {
             super(responseCode);
             //AMBER-45
             String state=request.getParameter(OAuth.OAUTH_STATE);

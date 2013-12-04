@@ -23,12 +23,11 @@ package org.apache.oltu.oauth2.client.response;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.oltu.oauth2.client.validator.CodeTokenValidator;
 import org.apache.oltu.oauth2.client.validator.CodeValidator;
 import org.apache.oltu.oauth2.client.validator.OAuthClientValidator;
 import org.apache.oltu.oauth2.client.validator.TokenValidator;
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
@@ -41,9 +40,9 @@ import org.apache.oltu.oauth2.common.utils.OAuthUtils;
  */
 public class OAuthAuthzResponse extends OAuthClientResponse {
 
-    private HttpServletRequest request;
+    private HttpRequest request;
 
-    protected OAuthAuthzResponse(HttpServletRequest request, OAuthClientValidator validator) {
+    protected OAuthAuthzResponse(HttpRequest request, OAuthClientValidator validator) {
         this.request = request;
         Map<String, String[]> params = request.getParameterMap();
         for (Map.Entry<String, String[]> entry : params.entrySet()) {
@@ -56,21 +55,21 @@ public class OAuthAuthzResponse extends OAuthClientResponse {
         this.validator = validator;
     }
 
-    public static OAuthAuthzResponse oauthCodeAuthzResponse(HttpServletRequest request)
+    public static OAuthAuthzResponse oauthCodeAuthzResponse(HttpRequest request)
         throws OAuthProblemException {
         OAuthAuthzResponse response = new OAuthAuthzResponse(request, new CodeValidator());
         response.validate();
         return response;
     }
 
-    public static OAuthAuthzResponse oAuthCodeAndTokenAuthzResponse(HttpServletRequest request)
+    public static OAuthAuthzResponse oAuthCodeAndTokenAuthzResponse(HttpRequest request)
         throws OAuthProblemException {
         OAuthAuthzResponse response = new OAuthAuthzResponse(request, new CodeTokenValidator());
         response.validate();
         return response;
     }
 
-    public static OAuthAuthzResponse oauthTokenAuthzResponse(HttpServletRequest request)
+    public static OAuthAuthzResponse oauthTokenAuthzResponse(HttpRequest request)
         throws OAuthProblemException {
         OAuthAuthzResponse response = new OAuthAuthzResponse(request, new TokenValidator());
         response.validate();
@@ -98,7 +97,7 @@ public class OAuthAuthzResponse extends OAuthClientResponse {
         return getParam(OAuth.OAUTH_STATE);
     }
 
-    public HttpServletRequest getRequest() {
+    public HttpRequest getRequest() {
         return request;
     }
 

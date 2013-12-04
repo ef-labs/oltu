@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.oltu.oauth2.client.demo.Utils;
 import org.apache.oltu.oauth2.client.demo.model.OAuthParams;
 import org.apache.oltu.oauth2.client.response.OAuthAuthzResponse;
+import org.apache.oltu.oauth2.common.OltuHttpServletRequestWrapper;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,7 +72,7 @@ public class RedirectController {
             
             // Create the response wrapper
             OAuthAuthzResponse oar = null;
-            oar = OAuthAuthzResponse.oauthCodeAuthzResponse(request);
+            oar = OAuthAuthzResponse.oauthCodeAuthzResponse(new OltuHttpServletRequestWrapper(request));
 
             // Get Authorization Code
             String code = oar.getCode();

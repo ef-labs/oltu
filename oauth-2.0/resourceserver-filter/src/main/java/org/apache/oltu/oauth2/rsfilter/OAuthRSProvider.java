@@ -21,8 +21,7 @@
 
 package org.apache.oltu.oauth2.rsfilter;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 
 
@@ -33,7 +32,7 @@ import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
  */
 public interface OAuthRSProvider {
 
-    OAuthDecision validateRequest(String rsId, String token, HttpServletRequest req) throws
+    OAuthDecision validateRequest(String rsId, String token, HttpRequest req) throws
         OAuthProblemException;
 
 }

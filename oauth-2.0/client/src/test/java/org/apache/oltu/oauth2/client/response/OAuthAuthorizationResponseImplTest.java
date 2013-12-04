@@ -23,11 +23,10 @@ package org.apache.oltu.oauth2.client.response;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.junit.Assert;
 import org.junit.Test;
-import org.apache.oltu.oauth2.client.response.OAuthAuthzResponse;
 import org.apache.oltu.oauth2.client.utils.TestUtils;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
@@ -51,7 +50,7 @@ public class OAuthAuthorizationResponseImplTest {
     @Test
     public void testGetAccessToken() throws Exception {
 
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         //check valid request
         TestUtils.expectNoErrorParameters(request);
@@ -123,7 +122,7 @@ public class OAuthAuthorizationResponseImplTest {
 
     @Test
     public void testGetExpiresIn() throws Exception {
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         TestUtils.expectNoErrorParameters(request);
         Map<String, String[]> parameters = new HashMap<String, String[]>();
@@ -171,7 +170,7 @@ public class OAuthAuthorizationResponseImplTest {
 
     @Test
     public void testGetScope() throws Exception {
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         TestUtils.expectNoErrorParameters(request);
 
@@ -221,7 +220,7 @@ public class OAuthAuthorizationResponseImplTest {
 
     @Test
     public void testGetCode() throws Exception {
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         //check valid request
         TestUtils.expectNoErrorParameters(request);
@@ -288,7 +287,7 @@ public class OAuthAuthorizationResponseImplTest {
     @Test
     public void testGetState() throws Exception {
 
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         //check valid request
         TestUtils.expectNoErrorParameters(request);

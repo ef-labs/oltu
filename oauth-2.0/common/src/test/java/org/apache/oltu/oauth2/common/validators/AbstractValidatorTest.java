@@ -21,11 +21,9 @@
 
 package org.apache.oltu.oauth2.common.validators;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
-import org.apache.oltu.oauth2.common.validators.AbstractValidator;
 import org.junit.Test;
 
 import static org.easymock.EasyMock.createStrictMock;
@@ -44,7 +42,7 @@ public class AbstractValidatorTest {
     @Test
     public void testValidateContentType() throws Exception {
 
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         replay(request);
@@ -65,7 +63,7 @@ public class AbstractValidatorTest {
 
     @Test(expected = OAuthProblemException.class)
     public void testInvalidContentType() throws Exception {
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         replay(request);

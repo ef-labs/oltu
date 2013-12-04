@@ -21,10 +21,8 @@
 
 package org.apache.oltu.oauth2.common.validators;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
-import org.apache.oltu.oauth2.common.validators.AbstractValidator;
 
 /**
  *
@@ -33,27 +31,27 @@ import org.apache.oltu.oauth2.common.validators.AbstractValidator;
  */
 public class AbstractValidatorImpl extends AbstractValidator {
 
-    public void validateMethod(HttpServletRequest request) throws OAuthProblemException {
+    public void validateMethod(HttpRequest request) throws OAuthProblemException {
         super.validateMethod(request);
     }
 
-    public void validateContentType(HttpServletRequest request) throws OAuthProblemException {
+    public void validateContentType(HttpRequest request) throws OAuthProblemException {
         super.validateContentType(request);
     }
 
-    public void validateRequiredParameters(HttpServletRequest request) throws OAuthProblemException {
+    public void validateRequiredParameters(HttpRequest request) throws OAuthProblemException {
         super.validateRequiredParameters(request);
     }
 
-    public void validateOptionalParameters(HttpServletRequest request) throws OAuthProblemException {
+    public void validateOptionalParameters(HttpRequest request) throws OAuthProblemException {
         super.validateOptionalParameters(request);
     }
 
-    public void validateNotAllowedParameters(HttpServletRequest request) throws OAuthProblemException {
+    public void validateNotAllowedParameters(HttpRequest request) throws OAuthProblemException {
         super.validateNotAllowedParameters(request);
     }
 
-    public void performAllValidations(HttpServletRequest request) throws OAuthProblemException {
+    public void performAllValidations(HttpRequest request) throws OAuthProblemException {
         super.performAllValidations(request);
     }
 }

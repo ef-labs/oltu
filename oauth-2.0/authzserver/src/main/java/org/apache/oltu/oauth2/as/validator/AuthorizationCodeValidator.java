@@ -21,8 +21,7 @@
 
 package org.apache.oltu.oauth2.as.validator;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.validators.AbstractValidator;
 
@@ -30,7 +29,7 @@ import org.apache.oltu.oauth2.common.validators.AbstractValidator;
  * Validator that checks for the required fields in an OAuth Token request with the Authorization Code grant type.
  * This validator enforces client authentication either through basic authentication or body parameters.
  */
-public class AuthorizationCodeValidator extends AbstractValidator<HttpServletRequest> {
+public class AuthorizationCodeValidator extends AbstractValidator<HttpRequest> {
 
     public AuthorizationCodeValidator() {
         requiredParams.add(OAuth.OAUTH_GRANT_TYPE);

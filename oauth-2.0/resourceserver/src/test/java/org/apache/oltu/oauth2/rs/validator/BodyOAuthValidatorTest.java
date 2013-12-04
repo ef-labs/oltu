@@ -26,14 +26,12 @@ import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
-import javax.servlet.http.HttpServletRequest;
-
 import junit.framework.Assert;
 
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
-import org.apache.oltu.oauth2.rs.validator.BearerBodyOAuthValidator;
 import org.junit.Test;
 
 /**
@@ -46,7 +44,7 @@ public class BodyOAuthValidatorTest {
     @Test
     public void testValidateInvalidMethod() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn("GET");
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         replay(request);
@@ -63,7 +61,7 @@ public class BodyOAuthValidatorTest {
 
     @Test
     public void tesValidateMultipartMessage() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn("multipart/form-data");
         replay(request);
@@ -80,7 +78,7 @@ public class BodyOAuthValidatorTest {
 
     @Test
     public void tesValidateInvalidEncoding() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         replay(request);
@@ -97,7 +95,7 @@ public class BodyOAuthValidatorTest {
 
     @Test
     public void tesValidateInvalidOAuthVersion() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn("HMAC-SHA1");
@@ -116,7 +114,7 @@ public class BodyOAuthValidatorTest {
 
     @Test
     public void tesValidateTokenMissing() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn(null);
@@ -136,7 +134,7 @@ public class BodyOAuthValidatorTest {
 
     @Test
     public void tesValidateMultipleTokens() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn(null);
@@ -156,7 +154,7 @@ public class BodyOAuthValidatorTest {
 
     @Test
     public void tesValidateValidMessage() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn(null);

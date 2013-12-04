@@ -23,8 +23,7 @@ package org.apache.oltu.oauth2.rs.validator;
 
 import static org.apache.oltu.oauth2.rs.ResourceServer.getQueryParameterValues;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -40,15 +39,15 @@ import org.apache.oltu.oauth2.rs.ResourceServer;
 public class BearerQueryOAuthValidator extends AbstractValidator {
 
     @Override
-    public void validateContentType(HttpServletRequest request) throws OAuthProblemException {
+    public void validateContentType(HttpRequest request) throws OAuthProblemException {
     }
 
     @Override
-    public void validateMethod(HttpServletRequest request) throws OAuthProblemException {
+    public void validateMethod(HttpRequest request) throws OAuthProblemException {
     }
 
     @Override
-    public void validateRequiredParameters(HttpServletRequest request) throws OAuthProblemException {
+    public void validateRequiredParameters(HttpRequest request) throws OAuthProblemException {
 
         String[] tokens = getQueryParameterValues(request, OAuth.OAUTH_BEARER_TOKEN);
         if (OAuthUtils.hasEmptyValues(tokens)) {

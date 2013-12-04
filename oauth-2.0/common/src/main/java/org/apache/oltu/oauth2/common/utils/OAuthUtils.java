@@ -40,9 +40,8 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.codec.binary.Base64;
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -495,7 +494,7 @@ public final class OAuthUtils {
 
     }
 
-    public static boolean isMultipart(HttpServletRequest request) {
+    public static boolean isMultipart(HttpRequest request) {
 
         if (!"post".equals(request.getMethod().toLowerCase())) {
             return false;

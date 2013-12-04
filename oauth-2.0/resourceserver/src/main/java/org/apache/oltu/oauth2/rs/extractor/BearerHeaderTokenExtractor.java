@@ -21,8 +21,7 @@
 
 package org.apache.oltu.oauth2.rs.extractor;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 
@@ -36,13 +35,13 @@ public class BearerHeaderTokenExtractor implements TokenExtractor {
 
 
     @Override
-    public String getAccessToken(HttpServletRequest request) {
+    public String getAccessToken(HttpRequest request) {
         String authzHeader = request.getHeader(OAuth.HeaderType.AUTHORIZATION);
         return OAuthUtils.getAuthHeaderField(authzHeader);
     }
 
     @Override
-    public String getAccessToken(HttpServletRequest request, String tokenName) {
+    public String getAccessToken(HttpRequest request, String tokenName) {
         String authzHeader = request.getHeader(OAuth.HeaderType.AUTHORIZATION);
         return OAuthUtils.getAuthHeaderField(authzHeader);
     }

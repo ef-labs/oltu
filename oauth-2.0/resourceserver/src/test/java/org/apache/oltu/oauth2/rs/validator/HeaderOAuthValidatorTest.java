@@ -21,16 +21,14 @@
 
 package org.apache.oltu.oauth2.rs.validator;
 
-import javax.servlet.http.HttpServletRequest;
-
 import junit.framework.Assert;
 
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.junit.Test;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
-import org.apache.oltu.oauth2.rs.validator.BearerHeaderOAuthValidator;
 
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
@@ -48,7 +46,7 @@ public class HeaderOAuthValidatorTest {
     @Test
     public void testValidateNoHeader() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn(null);
         replay(request);
         try {
@@ -66,7 +64,7 @@ public class HeaderOAuthValidatorTest {
     @Test
     public void testValidateInvalidHeader() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn("Basic arawersadf");
         replay(request);
         try {
@@ -85,7 +83,7 @@ public class HeaderOAuthValidatorTest {
     @Test
     public void testValidateValidHeaderMissingField() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn("Bearer  ");
         replay(request);
         try {
@@ -104,7 +102,7 @@ public class HeaderOAuthValidatorTest {
     @Test
     public void testValidateValidHeaderWrongVersion() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION))
             .andStubReturn("Bearer sdfsadfsadf,oauth_signature_method=\"HMAC-SHA1\"");
         replay(request);
@@ -122,7 +120,7 @@ public class HeaderOAuthValidatorTest {
     @Test
     public void testValidateValidHeader() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn("Bearer sdfsadfsadf");
         replay(request);
         BearerHeaderOAuthValidator bov = new BearerHeaderOAuthValidator();

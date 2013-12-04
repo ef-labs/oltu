@@ -25,9 +25,7 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.oltu.oauth2.as.response.OAuthASResponse;
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -44,7 +42,7 @@ public class OAuthASResponseTest {
 
     @Test
     public void testAuthzResponse() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         OAuthResponse oAuthResponse = OAuthASResponse.authorizationResponse(request,200)
             .location("http://www.example.com")
             .setCode("code")
@@ -61,7 +59,7 @@ public class OAuthASResponseTest {
 
     @Test
     public void testAuthzResponseWithState() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getParameter(OAuth.OAUTH_STATE)).andStubReturn("ok");
         replay(request);
         OAuthResponse oAuthResponse = OAuthASResponse.authorizationResponse(request,200)
@@ -79,7 +77,7 @@ public class OAuthASResponseTest {
 
     @Test
     public void testAuthzImplicitResponseWithState() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getParameter(OAuth.OAUTH_STATE)).andStubReturn("ok");
         replay(request);
         OAuthResponse oAuthResponse = OAuthASResponse.authorizationResponse(request,200)
@@ -165,7 +163,7 @@ public class OAuthASResponseTest {
 
     @Test
     public void testHeaderResponse() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         OAuthResponse oAuthResponse = OAuthASResponse.authorizationResponse(request,400).setCode("oauth_code")
             .setState("state_ok")
             .buildHeaderMessage();

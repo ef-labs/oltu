@@ -22,8 +22,8 @@
 package org.apache.oltu.oauth2.rs.validator;
 
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -39,15 +39,15 @@ import org.apache.oltu.oauth2.common.validators.AbstractValidator;
 public class BearerHeaderOAuthValidator extends AbstractValidator {
 
     @Override
-    public void validateContentType(HttpServletRequest request) throws OAuthProblemException {
+    public void validateContentType(HttpRequest request) throws OAuthProblemException {
     }
 
     @Override
-    public void validateMethod(HttpServletRequest request) throws OAuthProblemException {
+    public void validateMethod(HttpRequest request) throws OAuthProblemException {
     }
 
     @Override
-    public void validateRequiredParameters(HttpServletRequest request) throws OAuthProblemException {
+    public void validateRequiredParameters(HttpRequest request) throws OAuthProblemException {
         // Check if there is the Authorization Header
         String authzHeader = request.getHeader(OAuth.HeaderType.AUTHORIZATION);
         if (OAuthUtils.isEmpty(authzHeader)) {

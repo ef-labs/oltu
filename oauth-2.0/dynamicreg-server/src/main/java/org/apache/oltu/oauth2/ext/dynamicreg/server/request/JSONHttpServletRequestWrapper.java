@@ -30,9 +30,9 @@ import java.util.Map;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.oltu.oauth2.common.OAuth;
+import org.apache.oltu.oauth2.common.OltuHttpServletRequestWrapper;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthRuntimeException;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
@@ -44,7 +44,7 @@ import org.slf4j.LoggerFactory;
 /**
  *
  */
-public class JSONHttpServletRequestWrapper extends HttpServletRequestWrapper {
+public class JSONHttpServletRequestWrapper extends OltuHttpServletRequestWrapper {
 
     private Logger log = LoggerFactory.getLogger(JSONHttpServletRequestWrapper.class);
 

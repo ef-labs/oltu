@@ -21,7 +21,9 @@
 
 package org.apache.oltu.oauth2.rsfilter;
 
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
+import org.apache.oltu.oauth2.common.OltuHttpServletRequestWrapper;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
@@ -95,7 +97,7 @@ public class OAuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
         throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest)request;
+        HttpRequest req = new OltuHttpServletRequestWrapper((HttpServletRequest)request);
         HttpServletResponse res = (HttpServletResponse)response;
 
         try {

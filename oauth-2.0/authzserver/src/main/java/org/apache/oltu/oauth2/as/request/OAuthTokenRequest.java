@@ -21,17 +21,14 @@
 
 package org.apache.oltu.oauth2.as.request;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.oltu.oauth2.as.validator.AuthorizationCodeValidator;
 import org.apache.oltu.oauth2.as.validator.ClientCredentialValidator;
 import org.apache.oltu.oauth2.as.validator.PasswordValidator;
 import org.apache.oltu.oauth2.as.validator.RefreshTokenValidator;
-import org.apache.oltu.oauth2.common.OAuth;
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.types.GrantType;
-import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.apache.oltu.oauth2.common.validators.OAuthValidator;
 
 
@@ -51,12 +48,12 @@ public class OAuthTokenRequest extends AbstractOAuthTokenRequest {
      * @throws OAuthSystemException  if an unexpected exception was thrown
      * @throws OAuthProblemException if the request was not a valid Token request this exception is thrown.
      */
-    public OAuthTokenRequest(HttpServletRequest request) throws OAuthSystemException, OAuthProblemException {
+    public OAuthTokenRequest(HttpRequest request) throws OAuthSystemException, OAuthProblemException {
         super(request);
     }
 
     @Override
-    protected OAuthValidator<HttpServletRequest> initValidator() throws OAuthProblemException, OAuthSystemException {
+    protected OAuthValidator<HttpRequest> initValidator() throws OAuthProblemException, OAuthSystemException {
         validators.put(GrantType.PASSWORD.toString(), PasswordValidator.class);
         validators.put(GrantType.CLIENT_CREDENTIALS.toString(), ClientCredentialValidator.class);
         validators.put(GrantType.AUTHORIZATION_CODE.toString(), AuthorizationCodeValidator.class);

@@ -25,8 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
@@ -42,12 +41,12 @@ public abstract class OAuthRequest {
 
     private Logger log = LoggerFactory.getLogger(OAuthRequest.class);
 
-    protected HttpServletRequest request;
-    protected OAuthValidator<HttpServletRequest> validator;
-    protected Map<String, Class<? extends OAuthValidator<HttpServletRequest>>> validators =
-        new HashMap<String, Class<? extends OAuthValidator<HttpServletRequest>>>();
+    protected HttpRequest request;
+    protected OAuthValidator<HttpRequest> validator;
+    protected Map<String, Class<? extends OAuthValidator<HttpRequest>>> validators =
+        new HashMap<String, Class<? extends OAuthValidator<HttpRequest>>>();
 
-    public OAuthRequest(HttpServletRequest request) throws OAuthSystemException, OAuthProblemException {
+    public OAuthRequest(HttpRequest request) throws OAuthSystemException, OAuthProblemException {
         this.request = request;
         validate();
     }
@@ -79,7 +78,7 @@ public abstract class OAuthRequest {
 
     }
 
-    protected abstract OAuthValidator<HttpServletRequest> initValidator() throws OAuthProblemException,
+    protected abstract OAuthValidator<HttpRequest> initValidator() throws OAuthProblemException,
         OAuthSystemException;
 
     public String getParam(String name) {

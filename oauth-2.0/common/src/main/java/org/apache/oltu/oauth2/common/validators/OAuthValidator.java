@@ -21,8 +21,7 @@
 
 package org.apache.oltu.oauth2.common.validators;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 
 /**
@@ -30,7 +29,7 @@ import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
  *
  *
  */
-public interface OAuthValidator<T extends HttpServletRequest> {
+public interface OAuthValidator<T extends HttpRequest> {
 
     public void validateMethod(T request) throws OAuthProblemException;
 

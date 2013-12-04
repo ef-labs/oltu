@@ -24,7 +24,6 @@ package org.apache.oltu.oauth2.integration.endpoints;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,9 +33,9 @@ import javax.ws.rs.core.Response;
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuer;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuerImpl;
-import org.apache.oltu.oauth2.as.request.OAuthTokenRequest;
 import org.apache.oltu.oauth2.as.request.OAuthUnauthenticatedTokenRequest;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse;
+import org.apache.oltu.oauth2.common.OltuHttpServletRequestWrapper;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -63,7 +62,7 @@ public class UnauthenticatedTokenEndpoint {
         OAuthIssuer oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
 
         try {
-            oauthRequest = new OAuthUnauthenticatedTokenRequest(request);
+            oauthRequest = new OAuthUnauthenticatedTokenRequest(new OltuHttpServletRequestWrapper(request));
 
             // check if clientid is valid
             if (!Common.CLIENT_ID.equals(oauthRequest.getParam(OAuth.OAUTH_CLIENT_ID))) {

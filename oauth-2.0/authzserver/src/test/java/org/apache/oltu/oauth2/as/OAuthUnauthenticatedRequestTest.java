@@ -17,9 +17,8 @@
 
 package org.apache.oltu.oauth2.as;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.oltu.oauth2.as.request.OAuthUnauthenticatedTokenRequest;
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -43,7 +42,7 @@ public class OAuthUnauthenticatedRequestTest {
 
     @Test
     public void testTokenWrongGrantType() throws Exception {
-        HttpServletRequest request = new OauthMockRequestBuilder()
+        HttpRequest request = new OauthMockRequestBuilder()
                 .expectContentType(OAuth.ContentType.URL_ENCODED)
                 .expectRedirectUri(REDIRECT_URI)
                 .expectGrantType(OAuth.ContentType.URL_ENCODED)
@@ -63,7 +62,7 @@ public class OAuthUnauthenticatedRequestTest {
         assertInvalidTokenRequest(request);
     }
 
-    private void assertInvalidTokenRequest(HttpServletRequest request) throws OAuthSystemException {
+    private void assertInvalidTokenRequest(HttpRequest request) throws OAuthSystemException {
         try {
             new OAuthUnauthenticatedTokenRequest(request);
             fail("Exception expected");
@@ -76,7 +75,7 @@ public class OAuthUnauthenticatedRequestTest {
 
     @Test
     public void testTokenRequestInvalidMethod() throws Exception {
-        HttpServletRequest request = mockTokenRequestInvalidMethod(GrantType.AUTHORIZATION_CODE.toString());
+        HttpRequest request = mockTokenRequestInvalidMethod(GrantType.AUTHORIZATION_CODE.toString());
         assertInvalidTokenRequest(request);
 
         request = mockTokenRequestInvalidMethod(GrantType.PASSWORD.toString());
@@ -89,8 +88,8 @@ public class OAuthUnauthenticatedRequestTest {
         assertInvalidTokenRequest(request);
     }
 
-    private HttpServletRequest mockTokenRequestInvalidMethod(String grantType) {
-        HttpServletRequest request = new OauthMockRequestBuilder()
+    private HttpRequest mockTokenRequestInvalidMethod(String grantType) {
+        HttpRequest request = new OauthMockRequestBuilder()
                 .expectHttpMethod(OAuth.HttpMethod.GET)
                 .expectContentType(OAuth.ContentType.URL_ENCODED)
                 .expectGrantType(grantType)
@@ -104,7 +103,7 @@ public class OAuthUnauthenticatedRequestTest {
 
     @Test
     public void testTokenRequestInvalidContentType() throws Exception {
-        HttpServletRequest request = mockTokenRequestInvalidContentType(GrantType.AUTHORIZATION_CODE.toString());
+        HttpRequest request = mockTokenRequestInvalidContentType(GrantType.AUTHORIZATION_CODE.toString());
         assertInvalidTokenRequest(request);
 
         request = mockTokenRequestInvalidContentType(GrantType.PASSWORD.toString());
@@ -117,8 +116,8 @@ public class OAuthUnauthenticatedRequestTest {
         assertInvalidTokenRequest(request);
     }
 
-    private HttpServletRequest mockTokenRequestInvalidContentType(String grantType) {
-        HttpServletRequest request = new OauthMockRequestBuilder()
+    private HttpRequest mockTokenRequestInvalidContentType(String grantType) {
+        HttpRequest request = new OauthMockRequestBuilder()
                 .expectGrantType(grantType)
                 .expectHttpMethod(OAuth.HttpMethod.POST)
                 .expectContentType(OAuth.ContentType.JSON)
@@ -132,7 +131,7 @@ public class OAuthUnauthenticatedRequestTest {
 
     @Test
     public void testTokenAuthCodeRequestMissingParameter() throws Exception {
-        HttpServletRequest request = new OauthMockRequestBuilder()
+        HttpRequest request = new OauthMockRequestBuilder()
                 .expectHttpMethod(OAuth.HttpMethod.POST)
                 .expectContentType(OAuth.ContentType.URL_ENCODED)
                 .expectGrantType(OAuth.OAUTH_GRANT_TYPE)
@@ -176,7 +175,7 @@ public class OAuthUnauthenticatedRequestTest {
 
     @Test
     public void testTokenPasswordRequestMissingParameter() throws Exception {
-        HttpServletRequest request = new OauthMockRequestBuilder()
+        HttpRequest request = new OauthMockRequestBuilder()
                 .expectGrantType(GrantType.PASSWORD.toString())
                 .expectHttpMethod(OAuth.HttpMethod.POST)
                 .expectContentType(OAuth.ContentType.URL_ENCODED)
@@ -223,7 +222,7 @@ public class OAuthUnauthenticatedRequestTest {
 
     @Test
     public void testRefreshTokenRequestMissingParameter() throws Exception {
-        HttpServletRequest request = new OauthMockRequestBuilder()
+        HttpRequest request = new OauthMockRequestBuilder()
                 .expectGrantType(GrantType.REFRESH_TOKEN.toString())
                 .expectHttpMethod(OAuth.HttpMethod.POST)
                 .expectContentType(OAuth.ContentType.URL_ENCODED)
@@ -266,7 +265,7 @@ public class OAuthUnauthenticatedRequestTest {
 
     @Test
     public void testValidTokenRequest() throws Exception {
-        HttpServletRequest request = new OauthMockRequestBuilder()
+        HttpRequest request = new OauthMockRequestBuilder()
                 .expectGrantType(GrantType.AUTHORIZATION_CODE.toString())
                 .expectHttpMethod(OAuth.HttpMethod.POST)
                 .expectContentType(OAuth.ContentType.URL_ENCODED)

@@ -21,12 +21,11 @@
 
 package org.apache.oltu.oauth2.as.validator;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.validators.AbstractValidator;
 
-public class ClientCredentialValidator extends AbstractValidator<HttpServletRequest> {
+public class ClientCredentialValidator extends AbstractValidator<HttpRequest> {
     public ClientCredentialValidator() {
         requiredParams.add(OAuth.OAUTH_GRANT_TYPE);
 

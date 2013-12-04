@@ -26,15 +26,13 @@ import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
-import javax.servlet.http.HttpServletRequest;
-
 import junit.framework.Assert;
 
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
-import org.apache.oltu.oauth2.rs.validator.BearerQueryOAuthValidator;
 import org.junit.Test;
 
 /**
@@ -47,7 +45,7 @@ public class QueryOAuthValidatorTest {
     @Test
     public void testValidateWrongVersion() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getQueryString()).andStubReturn(OAuth.OAUTH_VERSION_DIFFER + "=HMAC-SHA1&"
             + OAuth.OAUTH_BEARER_TOKEN
             + "=access_token");
@@ -69,7 +67,7 @@ public class QueryOAuthValidatorTest {
     @Test
     public void testValidateNoQuery() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getQueryString()).andStubReturn(null);
         //        expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn(null);
         //        expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
@@ -90,7 +88,7 @@ public class QueryOAuthValidatorTest {
     @Test
     public void testValidateMultipleTokens() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getQueryString()).andStubReturn(OAuth.OAUTH_BEARER_TOKEN + "=access_token1&"
             + OAuth.OAUTH_BEARER_TOKEN
             + "=access_token2");
@@ -113,7 +111,7 @@ public class QueryOAuthValidatorTest {
     @Test
     public void testValidateToken() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getQueryString()).andStubReturn(OAuth.OAUTH_BEARER_TOKEN + "=access_token1");
         //        expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn(null);
         //        expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"access_token1"});

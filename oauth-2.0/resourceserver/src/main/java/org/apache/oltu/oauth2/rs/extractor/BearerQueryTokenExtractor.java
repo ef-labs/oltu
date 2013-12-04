@@ -23,8 +23,7 @@ package org.apache.oltu.oauth2.rs.extractor;
 
 import static org.apache.oltu.oauth2.rs.ResourceServer.getQueryParameterValue;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 
 /**
@@ -35,7 +34,7 @@ import org.apache.oltu.oauth2.common.OAuth;
 public class BearerQueryTokenExtractor implements TokenExtractor {
 
     @Override
-    public String getAccessToken(HttpServletRequest request) {
+    public String getAccessToken(HttpRequest request) {
         String token = getQueryParameterValue(request, OAuth.OAUTH_BEARER_TOKEN);
         if (token == null) {
             token = getQueryParameterValue(request, OAuth.OAUTH_TOKEN);
@@ -44,7 +43,7 @@ public class BearerQueryTokenExtractor implements TokenExtractor {
     }
 
     @Override
-    public String getAccessToken(HttpServletRequest request, String tokenName) {
+    public String getAccessToken(HttpRequest request, String tokenName) {
         return getQueryParameterValue(request, tokenName);
     }
 

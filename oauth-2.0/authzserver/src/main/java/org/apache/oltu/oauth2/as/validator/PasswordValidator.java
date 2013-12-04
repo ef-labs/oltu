@@ -21,8 +21,7 @@
 
 package org.apache.oltu.oauth2.as.validator;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.validators.AbstractValidator;
 
@@ -31,7 +30,7 @@ import org.apache.oltu.oauth2.common.validators.AbstractValidator;
  *
  *
  */
-public class PasswordValidator extends AbstractValidator<HttpServletRequest> {
+public class PasswordValidator extends AbstractValidator<HttpRequest> {
 
     public PasswordValidator() {
         requiredParams.add(OAuth.OAUTH_GRANT_TYPE);

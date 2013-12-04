@@ -17,8 +17,7 @@
 
 package org.apache.oltu.oauth2.as.request;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
@@ -30,16 +29,16 @@ import org.apache.oltu.oauth2.common.validators.OAuthValidator;
  */
 public abstract class AbstractOAuthTokenRequest extends OAuthRequest {
 
-  protected AbstractOAuthTokenRequest(HttpServletRequest request) throws OAuthSystemException, OAuthProblemException {
+  protected AbstractOAuthTokenRequest(HttpRequest request) throws OAuthSystemException, OAuthProblemException {
     super(request);
   }
 
-  protected OAuthValidator<HttpServletRequest> initValidator() throws OAuthProblemException, OAuthSystemException {
+  protected OAuthValidator<HttpRequest> initValidator() throws OAuthProblemException, OAuthSystemException {
     final String requestTypeValue = getParam(OAuth.OAUTH_GRANT_TYPE);
     if (OAuthUtils.isEmpty(requestTypeValue)) {
       throw OAuthUtils.handleOAuthProblemException("Missing grant_type parameter value");
     }
-    final Class<? extends OAuthValidator<HttpServletRequest>> clazz = validators.get(requestTypeValue);
+    final Class<? extends OAuthValidator<HttpRequest>> clazz = validators.get(requestTypeValue);
     if (clazz == null) {
       throw OAuthUtils.handleOAuthProblemException("Invalid grant_type parameter value");
     }

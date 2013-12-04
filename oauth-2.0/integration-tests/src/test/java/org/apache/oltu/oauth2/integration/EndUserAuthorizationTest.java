@@ -34,6 +34,7 @@ import javax.ws.rs.core.Response;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.client.response.OAuthAuthzResponse;
 import org.apache.oltu.oauth2.client.response.OAuthClientResponse;
+import org.apache.oltu.oauth2.common.OltuHttpServletRequestWrapper;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -102,7 +103,7 @@ public class EndUserAuthorizationTest extends ClientServerOAuthTest {
     public Response callback(@Context HttpServletRequest request) throws Exception {
         OAuthClientResponse resp = null;
         try {
-            OAuthAuthzResponse.oauthCodeAuthzResponse(request);
+            OAuthAuthzResponse.oauthCodeAuthzResponse(new OltuHttpServletRequestWrapper(request));
             fail("exception expected");
         } catch (OAuthProblemException e) {
             assertEquals(OAuthError.CodeResponse.INVALID_REQUEST, e.getError());
@@ -117,7 +118,7 @@ public class EndUserAuthorizationTest extends ClientServerOAuthTest {
 
         OAuthClientResponse resp = null;
         try {
-            OAuthAuthzResponse.oauthCodeAuthzResponse(request);
+            OAuthAuthzResponse.oauthCodeAuthzResponse(new OltuHttpServletRequestWrapper(request));
         } catch (OAuthProblemException e) {
             fail("exception not expected");
         }

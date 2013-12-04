@@ -21,8 +21,7 @@
 
 package org.apache.oltu.oauth2.rs.extractor;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 
 
@@ -34,7 +33,7 @@ import org.apache.oltu.oauth2.common.OAuth;
 public class BearerBodyTokenExtractor implements TokenExtractor {
 
     @Override
-    public String getAccessToken(HttpServletRequest request) {
+    public String getAccessToken(HttpRequest request) {
         String token = request.getParameter(OAuth.OAUTH_BEARER_TOKEN);
         if (token == null) {
             token = request.getParameter(OAuth.OAUTH_TOKEN);
@@ -43,7 +42,7 @@ public class BearerBodyTokenExtractor implements TokenExtractor {
     }
 
     @Override
-    public String getAccessToken(HttpServletRequest request, String tokenName) {
+    public String getAccessToken(HttpRequest request, String tokenName) {
         return request.getParameter(tokenName);
     }
 }

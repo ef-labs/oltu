@@ -22,8 +22,7 @@
 
 package org.apache.oltu.oauth2.as.validator;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -35,7 +34,7 @@ import org.apache.oltu.oauth2.common.validators.AbstractValidator;
  *
  *
  */
-public class CodeTokenValidator extends AbstractValidator<HttpServletRequest> {
+public class CodeTokenValidator extends AbstractValidator<HttpRequest> {
 
     public CodeTokenValidator() {
         requiredParams.add(OAuth.OAUTH_RESPONSE_TYPE);
@@ -44,7 +43,7 @@ public class CodeTokenValidator extends AbstractValidator<HttpServletRequest> {
     }
 
     @Override
-    public void validateMethod(HttpServletRequest request) throws OAuthProblemException {
+    public void validateMethod(HttpRequest request) throws OAuthProblemException {
         String method = request.getMethod();
         if (!method.equals(OAuth.HttpMethod.GET) && !method.equals(OAuth.HttpMethod.POST)) {
             throw OAuthProblemException.error(OAuthError.CodeResponse.INVALID_REQUEST)
@@ -53,7 +52,7 @@ public class CodeTokenValidator extends AbstractValidator<HttpServletRequest> {
     }
 
     @Override
-    public void validateContentType(HttpServletRequest request) throws OAuthProblemException {
+    public void validateContentType(HttpRequest request) throws OAuthProblemException {
     }
 }
 

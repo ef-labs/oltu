@@ -21,9 +21,7 @@
 
 package org.apache.oltu.oauth2.as.validator;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.oltu.oauth2.as.validator.TokenValidator;
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.junit.Assert;
@@ -44,7 +42,7 @@ import static org.easymock.EasyMock.verify;
 public class TokenValidatorTest {
     @Test
     public void testValidateMethod() throws Exception {
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.GET);
 
         replay(request);
@@ -55,7 +53,7 @@ public class TokenValidatorTest {
 
         reset(request);
 
-        request = createStrictMock(HttpServletRequest.class);
+        request = createStrictMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
 
         replay(request);
@@ -66,7 +64,7 @@ public class TokenValidatorTest {
 
         reset(request);
 
-        request = createStrictMock(HttpServletRequest.class);
+        request = createStrictMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.DELETE);
 
         replay(request);
@@ -84,7 +82,7 @@ public class TokenValidatorTest {
 
     @Test
     public void testRequiredParams() throws Exception {
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
 
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.GET);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);

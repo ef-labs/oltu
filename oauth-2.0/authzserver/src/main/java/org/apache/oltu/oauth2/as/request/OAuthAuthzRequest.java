@@ -21,10 +21,9 @@
 
 package org.apache.oltu.oauth2.as.request;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.oltu.oauth2.as.validator.CodeValidator;
 import org.apache.oltu.oauth2.as.validator.TokenValidator;
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
@@ -39,12 +38,12 @@ import org.apache.oltu.oauth2.common.validators.OAuthValidator;
  */
 public class OAuthAuthzRequest extends OAuthRequest {
 
-    public OAuthAuthzRequest(HttpServletRequest request) throws OAuthSystemException, OAuthProblemException {
+    public OAuthAuthzRequest(HttpRequest request) throws OAuthSystemException, OAuthProblemException {
         super(request);
     }
 
     @Override
-    protected OAuthValidator<HttpServletRequest> initValidator() throws OAuthProblemException, OAuthSystemException {
+    protected OAuthValidator<HttpRequest> initValidator() throws OAuthProblemException, OAuthSystemException {
         //end user authorization validators
         validators.put(ResponseType.CODE.toString(), CodeValidator.class);
         validators.put(ResponseType.TOKEN.toString(), TokenValidator.class);
@@ -52,7 +51,7 @@ public class OAuthAuthzRequest extends OAuthRequest {
         if (OAuthUtils.isEmpty(requestTypeValue)) {
             throw OAuthUtils.handleOAuthProblemException("Missing response_type parameter value");
         }
-        final Class<? extends OAuthValidator<HttpServletRequest>> clazz = validators.get(requestTypeValue);
+        final Class<? extends OAuthValidator<HttpRequest>> clazz = validators.get(requestTypeValue);
         if (clazz == null) {
             throw OAuthUtils.handleOAuthProblemException("Invalid response_type parameter value");
         }

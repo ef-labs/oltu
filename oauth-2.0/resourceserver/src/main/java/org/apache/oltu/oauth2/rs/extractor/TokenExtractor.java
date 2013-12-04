@@ -21,7 +21,7 @@
 
 package org.apache.oltu.oauth2.rs.extractor;
 
-import javax.servlet.http.HttpServletRequest;
+import org.apache.oltu.oauth2.common.HttpRequest;
 
 /**
  *
@@ -30,8 +30,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface TokenExtractor {
 
-    String getAccessToken(HttpServletRequest request);
+    String getAccessToken(HttpRequest request);
 
-    String getAccessToken(HttpServletRequest request, String tokenName);
+    String getAccessToken(HttpRequest request, String tokenName);
 
 }

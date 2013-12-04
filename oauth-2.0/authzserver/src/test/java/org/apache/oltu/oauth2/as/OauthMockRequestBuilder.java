@@ -17,8 +17,7 @@
 
 package org.apache.oltu.oauth2.as;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 
 import static org.easymock.EasyMock.createMock;
@@ -26,10 +25,10 @@ import static org.easymock.EasyMock.expect;
 
 public class OauthMockRequestBuilder {
 
-    private HttpServletRequest request;
+    private HttpRequest request;
 
     public OauthMockRequestBuilder() {
-        request = createMock(HttpServletRequest.class);
+        request = createMock(HttpRequest.class);
     }
 
     public OauthMockRequestBuilder expectOauthResponseType(String oauthResponseType) {
@@ -50,7 +49,7 @@ public class OauthMockRequestBuilder {
         return this;
     }
 
-    public HttpServletRequest build() {
+    public HttpRequest build() {
         return request;
     }
 

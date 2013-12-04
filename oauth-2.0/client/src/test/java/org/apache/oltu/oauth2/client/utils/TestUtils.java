@@ -23,8 +23,7 @@ package org.apache.oltu.oauth2.client.utils;
 
 import static org.easymock.EasyMock.expect;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 
 
@@ -55,7 +54,7 @@ public final class TestUtils {
 
 //    public static final String
 
-    public static void expectNoErrorParameters(HttpServletRequest request) {
+    public static void expectNoErrorParameters(HttpRequest request) {
         expect(request.getParameter(OAuthError.OAUTH_ERROR))
             .andStubReturn(null);
         expect(request.getParameter(OAuthError.OAUTH_ERROR_DESCRIPTION)).andStubReturn(null);

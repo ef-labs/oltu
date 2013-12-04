@@ -23,8 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.types.ParameterStyle;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
@@ -58,7 +57,7 @@ public abstract class ResourceServer {
      * @param name
      * @return
      */
-    public static String[] getQueryParameterValues(HttpServletRequest request, String name) {
+    public static String[] getQueryParameterValues(HttpRequest request, String name) {
         String query = request.getQueryString();
         if (query == null) {
             return null;
@@ -85,7 +84,7 @@ public abstract class ResourceServer {
         return values.toArray(new String[values.size()]);
     }
 
-    public static String getQueryParameterValue(HttpServletRequest request, String name) {
+    public static String getQueryParameterValue(HttpRequest request, String name) {
         String[] values = getQueryParameterValues(request, name);
         if (values == null || values.length == 0) {
             return null;

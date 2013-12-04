@@ -29,6 +29,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import org.apache.oltu.oauth2.common.OltuHttpServletRequestWrapper;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -55,7 +56,7 @@ public class ResourceHeaderEndpoint {
         try {
 
             // Make the OAuth Request out of this request
-            OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(request,
+            OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(new OltuHttpServletRequestWrapper(request),
                 ParameterStyle.HEADER);
 
             // Get the access token

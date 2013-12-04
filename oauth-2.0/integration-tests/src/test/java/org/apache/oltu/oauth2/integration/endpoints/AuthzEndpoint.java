@@ -36,6 +36,8 @@ import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuerImpl;
 import org.apache.oltu.oauth2.as.request.OAuthAuthzRequest;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse;
+import org.apache.oltu.oauth2.common.HttpRequest;
+import org.apache.oltu.oauth2.common.OltuHttpServletRequestWrapper;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
@@ -60,13 +62,14 @@ public class AuthzEndpoint {
         OAuthIssuerImpl oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
 
         try {
-            oauthRequest = new OAuthAuthzRequest(request);
+            HttpRequest req = new OltuHttpServletRequestWrapper(request);
+            oauthRequest = new OAuthAuthzRequest(req);
 
             //build response according to response_type
             String responseType = oauthRequest.getParam(OAuth.OAUTH_RESPONSE_TYPE);
 
             OAuthASResponse.OAuthAuthorizationResponseBuilder builder = OAuthASResponse
-                .authorizationResponse(request,HttpServletResponse.SC_FOUND);
+                .authorizationResponse(req,HttpServletResponse.SC_FOUND);
 
             if (responseType.equals(ResponseType.CODE.toString())) {
                 builder.setCode(oauthIssuerImpl.authorizationCode());

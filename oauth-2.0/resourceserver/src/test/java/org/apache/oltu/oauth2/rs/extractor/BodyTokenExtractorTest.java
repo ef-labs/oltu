@@ -26,12 +26,10 @@ import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
-import javax.servlet.http.HttpServletRequest;
-
 import junit.framework.Assert;
 
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
-import org.apache.oltu.oauth2.rs.extractor.BearerBodyTokenExtractor;
 import org.junit.Test;
 
 
@@ -45,7 +43,7 @@ public class BodyTokenExtractorTest {
     @Test
     public void testGetAccessToken() throws Exception {
 
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
         expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn("sometoken");
         replay(request);
         BearerBodyTokenExtractor bte = new BearerBodyTokenExtractor();
@@ -56,7 +54,7 @@ public class BodyTokenExtractorTest {
     @Test
     public void testGetAccessTokenNull() throws Exception {
 
-        HttpServletRequest request = createStrictMock(HttpServletRequest.class);
+        HttpRequest request = createStrictMock(HttpRequest.class);
         expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
         expect(request.getParameter(OAuth.OAUTH_TOKEN)).andStubReturn(null);
         replay(request);

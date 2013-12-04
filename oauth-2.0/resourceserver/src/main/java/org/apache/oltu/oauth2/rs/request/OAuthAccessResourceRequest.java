@@ -24,7 +24,8 @@ package org.apache.oltu.oauth2.rs.request;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
+
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -44,7 +45,7 @@ import org.apache.oltu.oauth2.rs.extractor.TokenExtractor;
  */
 public class OAuthAccessResourceRequest {
 
-    private HttpServletRequest request;
+    private HttpRequest request;
     private ParameterStyle[] parameterStyles=new ParameterStyle[] {OAuth.DEFAULT_PARAMETER_STYLE};
     private TokenType[] tokenTypes=new TokenType []{OAuth.DEFAULT_TOKEN_TYPE};
     private ParameterStyle usedParameterStyle;
@@ -59,22 +60,22 @@ public class OAuthAccessResourceRequest {
         //TODO add MACResourceServer - see AMBER-41
     }
   
-    public OAuthAccessResourceRequest(HttpServletRequest request)
+    public OAuthAccessResourceRequest(HttpRequest request)
         throws OAuthSystemException, OAuthProblemException {
         this(request,new TokenType []{OAuth.DEFAULT_TOKEN_TYPE}, new ParameterStyle[] {OAuth.DEFAULT_PARAMETER_STYLE});
     }
 
-    public OAuthAccessResourceRequest(HttpServletRequest request, ParameterStyle... parameterStyles)
+    public OAuthAccessResourceRequest(HttpRequest request, ParameterStyle... parameterStyles)
     throws OAuthSystemException, OAuthProblemException {
     	this(request,new TokenType []{OAuth.DEFAULT_TOKEN_TYPE}, parameterStyles);
     }
     
-    public OAuthAccessResourceRequest(HttpServletRequest request, TokenType... tokenTypes)
+    public OAuthAccessResourceRequest(HttpRequest request, TokenType... tokenTypes)
     throws OAuthSystemException, OAuthProblemException {
     	this(request,tokenTypes,  new ParameterStyle[] {OAuth.DEFAULT_PARAMETER_STYLE});
     }
     
-    public OAuthAccessResourceRequest(HttpServletRequest request, TokenType[] tokenTypes ,ParameterStyle[] parameterStyles)
+    public OAuthAccessResourceRequest(HttpRequest request, TokenType[] tokenTypes ,ParameterStyle[] parameterStyles)
         throws OAuthSystemException, OAuthProblemException {
         this.request = request;
         this.tokenTypes = tokenTypes;

@@ -24,8 +24,7 @@ package org.apache.oltu.oauth2.rs;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.fail;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.oltu.oauth2.common.HttpRequest;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.error.OAuthError;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
@@ -45,7 +44,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateNoHeaderRequest() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn(null);
@@ -66,7 +65,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateWrongHeaderRequest() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn("Basic assdafasfd");
@@ -84,7 +83,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateHeaderMissingFieldRequest() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn("Bearer ");
@@ -102,7 +101,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateHeaderWrongVersionRequest() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION))
@@ -121,7 +120,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateValidHeaderRequest() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         expect(request.getHeader(OAuth.HeaderType.AUTHORIZATION)).andStubReturn("Bearer token");
@@ -138,7 +137,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyWrongMethod() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.GET);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken"});
@@ -157,7 +156,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyInvalidEncoding() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.JSON);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken"});
@@ -175,7 +174,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyWrongOAuthVersion() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken"});
@@ -193,7 +192,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyHeaderMixedTokens() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken"});
@@ -213,7 +212,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyHeaderMixedTokensAndWrongVersion() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken"});
@@ -234,7 +233,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyNoToken() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
@@ -254,7 +253,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyMultipleTokens() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken",
@@ -274,7 +273,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateBodyValidRequest() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
         expect(request.getContentType()).andStubReturn(OAuth.ContentType.URL_ENCODED);
         expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken"});
@@ -293,7 +292,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateQueryNoToken() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.GET);
         expect(request.getQueryString()).andStubReturn(null);
         //        expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
@@ -314,7 +313,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateQueryWrongVersion() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.GET);
         expect(request.getQueryString()).andStubReturn(OAuth.OAUTH_VERSION_DIFFER + "=HMAC-SHA1&"
             + OAuth.OAUTH_BEARER_TOKEN
@@ -335,7 +334,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateQueryMultipleTokens() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.GET);
         expect(request.getQueryString()).andStubReturn(OAuth.OAUTH_BEARER_TOKEN + "=sometoken&"
             + OAuth.OAUTH_BEARER_TOKEN
@@ -357,7 +356,7 @@ public class OAuthAccessResourceRequestTest {
     @Test
     public void testCreateQueryValidRequest() throws Exception {
 
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.GET);
         expect(request.getQueryString()).andStubReturn(OAuth.OAUTH_BEARER_TOKEN + "=sometoken");
         //        expect(request.getParameterValues(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(new String[] {"sometoken"});
@@ -375,7 +374,7 @@ public class OAuthAccessResourceRequestTest {
 
     @Test
     public void testGetAccessTokenWrongQueryRequest() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getQueryString()).andStubReturn(null);
         //        expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
         //        expect(request.getParameterValues(OAuth.OAUTH_TOKEN)).andStubReturn(null);        
@@ -396,7 +395,7 @@ public class OAuthAccessResourceRequestTest {
 
     @Test
     public void testGetAccessTokenWrongHeaderRequest() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
         expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn(null);
         expect(request.getHeader("Authorization")).andStubReturn(null);
@@ -415,7 +414,7 @@ public class OAuthAccessResourceRequestTest {
 
     @Test
     public void testGetAccessTokenWrongBodyRequest() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
         expect(request.getParameter(OAuth.OAUTH_VERSION_DIFFER)).andStubReturn(null);
         expect(request.getMethod()).andStubReturn(OAuth.HttpMethod.POST);
@@ -435,7 +434,7 @@ public class OAuthAccessResourceRequestTest {
 
     @Test
     public void testGetAccessCorrectRequest() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
 
         //test body
         expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn("sometoken");
@@ -489,7 +488,7 @@ public class OAuthAccessResourceRequestTest {
 
     @Test
     public void testMultipleStylesValidRequest() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getQueryString()).andStubReturn(null);
 
         expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn(null);
@@ -512,7 +511,7 @@ public class OAuthAccessResourceRequestTest {
 
     @Test
     public void testMultipleStylesInvalidRequest() throws Exception {
-        HttpServletRequest request = createMock(HttpServletRequest.class);
+        HttpRequest request = createMock(HttpRequest.class);
         expect(request.getQueryString()).andStubReturn(null);
 
         expect(request.getParameter(OAuth.OAUTH_BEARER_TOKEN)).andStubReturn("sometoken");
