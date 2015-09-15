@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.apache.oltu.openidconnect</groupId>
     <artifactId>org.apache.oltu.openidconnect.parent</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1-EF</version>
   </parent>
 
   <artifactId>org.apache.oltu.openidconnect.common</artifactId>
