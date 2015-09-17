@@ -21,10 +21,11 @@
   <parent>
     <groupId>org.apache.oltu.oauth2</groupId>
     <artifactId>org.apache.oltu.oauth2.parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>org.apache.oltu.oauth2.jwt</artifactId>
+  <packaging>bundle</packaging>
 
   <name>Apache Oltu - OAuth 2.0 - JWT</name>
   <description>OAuth 2.0 library - JWT</description>
@@ -40,6 +41,18 @@
       <groupId>org.apache.oltu.commons</groupId>
       <artifactId>org.apache.oltu.commons.json</artifactId>
       <version>1.0.0</version>
+    </dependency>
+    
+   	<dependency>
+      <groupId>org.apache.oltu.oauth2</groupId>
+      <artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    
+  	<dependency>
+      <groupId>org.apache.oltu.oauth2</groupId>
+      <artifactId>org.apache.oltu.oauth2.common</artifactId>
+      <version>1.0.1</version>
     </dependency>
   </dependencies>
 

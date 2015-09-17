@@ -1,8 +1,4 @@
-/**
- *       Copyright 2010 Newcastle University
- *
- *          http://research.ncl.ac.uk/smart/
- *
+/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -18,31 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.apache.oltu.jose.jws.signature.impl;
 
-package org.apache.oltu.oauth2.common.message.types;
+import org.apache.oltu.jose.jws.signature.SigningKey;
 
-/**
- *
- *
- *
- */
-public enum GrantType {
-    // NONE("none"),
-    AUTHORIZATION_CODE("authorization_code"),
-    IMPLICIT("implicit"),
-    PASSWORD("password"),
-    REFRESH_TOKEN("refresh_token"),
-    CLIENT_CREDENTIALS("client_credentials"),
-    JWT_BEARER("urn:ietf:params:oauth:grant-type:jwt-bearer");
+public class PrivateKey implements SigningKey {
 
-    private String grantType;
+    java.security.PrivateKey privateKey;
 
-    GrantType(String grantType) {
-        this.grantType = grantType;
+    public PrivateKey(java.security.PrivateKey privateKey) {
+        this.privateKey = privateKey;
     }
 
-    @Override
-    public String toString() {
-        return grantType;
+    public java.security.PrivateKey getPrivateKey() {
+        return privateKey;
     }
+
 }

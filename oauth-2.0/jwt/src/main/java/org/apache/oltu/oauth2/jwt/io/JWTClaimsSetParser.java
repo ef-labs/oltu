@@ -16,6 +16,10 @@
  */
 package org.apache.oltu.oauth2.jwt.io;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.oltu.commons.json.CustomizableEntityReader;
 import org.apache.oltu.oauth2.jwt.JWT;
 
@@ -28,7 +32,7 @@ final class JWTClaimsSetParser extends CustomizableEntityReader<JWT, JWT.Builder
     @Override
     protected <T> boolean handleProperty(String key, T value) {
         if (AUDIENCE.equals(key)) {
-            getBuilder().setClaimsSetAudience(String.valueOf(value));
+            handleAudience(value);
         } else if (EXPIRATION_TIME.equals(key)) {
             getBuilder().setClaimsSetExpirationTime(((Integer) value).longValue());
         } else if (ISSUED_AT.equals(key)) {
@@ -48,6 +52,32 @@ final class JWTClaimsSetParser extends CustomizableEntityReader<JWT, JWT.Builder
         }
 
         return true;
+    }
+
+    private <T> void handleAudience(T value) {
+        if (value instanceof Collection) {
+            getBuilder().setClaimsSetAudiences(collectionToStringList((Collection<?>) value));
+        } else if (value instanceof Object[]) {
+            getBuilder().setClaimsSetAudiences(arrayToStringList((Object[]) value));
+        } else {
+            getBuilder().setClaimsSetAudience(String.valueOf(value));
+        }
+    }
+
+    private List<String> collectionToStringList(Collection<?> values) {
+        List<String> l = new ArrayList<String>();
+        for (Object v : values) {
+            l.add(String.valueOf(v));
+        }
+        return l;
+    }
+
+    private List<String> arrayToStringList(Object[] values) {
+        List<String> l = new ArrayList<String>();
+        for (Object v : values) {
+            l.add(String.valueOf(v));
+        }
+        return l;
     }
 
 }

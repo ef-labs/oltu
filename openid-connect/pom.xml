@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.apache.oltu</groupId>
     <artifactId>org.apache.oltu.parent</artifactId>
-    <version>1</version>
+    <version>4-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
@@ -30,12 +30,13 @@
   <version>0.1-EF</version>
   <packaging>pom</packaging>
 
-  <name>Apache Oltu - OpenId Connect - Parent</name>
+  <name>Apache Oltu - OpenId Connect</name>
 
-  <modules>
-    <module>common</module>
-    <module>client</module>
-  </modules>
+  <scm>
+    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/openid-connect</developerConnection>
+    <connection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/openid-connect</connection>
+    <url>https://svn.apache.org/repos/asf/oltu/trunk/openid-connect</url>
+  </scm>
 
   <distributionManagement>
     <repository>
@@ -62,5 +63,39 @@
      </notifier>
    </notifiers>
   </ciManagement>
+
+  <modules>
+    <module>common</module>
+    <module>client</module>
+  </modules>
+
+  <profiles>
+    <profile>
+      <id>site</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <configuration>
+              <inputDirectory>${project.reporting.outputDirectory}/apidocs</inputDirectory>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-publish-plugin</artifactId>
+            <configuration>
+              <checkoutDirectory>${scmPubCheckoutDirectory}</checkoutDirectory>
+              <pubScmUrl>scm:svn:https://svn.apache.org/repos/asf/oltu/site/apidocs/openid-connect</pubScmUrl>
+              <checkinComment>Oltu OpenID Connect apidocs deployment</checkinComment>
+              <content>${project.build.directory}/staging</content>
+              <tryUpdate>true</tryUpdate>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

@@ -26,6 +26,7 @@
 
   <artifactId>org.apache.oltu.jose.jws</artifactId>
   <version>1.0.1-SNAPSHOT</version>
+  <packaging>bundle</packaging>
 
   <name>Apache Oltu - JOSE - JWS</name>
   <description>JWS specification implemented in Apache Oltu</description>
@@ -38,7 +39,7 @@
     <dependency>
       <groupId>org.apache.oltu.commons</groupId>
       <artifactId>org.apache.oltu.commons.encodedtoken</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -46,6 +47,7 @@
       <artifactId>org.apache.oltu.commons.json</artifactId>
       <version>1.0.0</version>
     </dependency>
+    
   </dependencies>
 
 </project>

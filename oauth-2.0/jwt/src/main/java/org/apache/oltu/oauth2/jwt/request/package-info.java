@@ -1,8 +1,4 @@
-/**
- *       Copyright 2010 Newcastle University
- *
- *          http://research.ncl.ac.uk/smart/
- *
+/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -19,30 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.oltu.oauth2.common.message.types;
-
 /**
- *
- *
- *
+ * JWT request manipulators implementation.
  */
-public enum GrantType {
-    // NONE("none"),
-    AUTHORIZATION_CODE("authorization_code"),
-    IMPLICIT("implicit"),
-    PASSWORD("password"),
-    REFRESH_TOKEN("refresh_token"),
-    CLIENT_CREDENTIALS("client_credentials"),
-    JWT_BEARER("urn:ietf:params:oauth:grant-type:jwt-bearer");
-
-    private String grantType;
-
-    GrantType(String grantType) {
-        this.grantType = grantType;
-    }
-
-    @Override
-    public String toString() {
-        return grantType;
-    }
-}
+package org.apache.oltu.oauth2.jwt.request;

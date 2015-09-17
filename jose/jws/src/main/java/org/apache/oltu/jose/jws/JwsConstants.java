@@ -1,8 +1,4 @@
-/**
- *       Copyright 2010 Newcastle University
- *
- *          http://research.ncl.ac.uk/smart/
- *
+/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -18,31 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.apache.oltu.jose.jws;
 
-package org.apache.oltu.oauth2.common.message.types;
+public class JwsConstants {
 
-/**
- *
- *
- *
- */
-public enum GrantType {
-    // NONE("none"),
-    AUTHORIZATION_CODE("authorization_code"),
-    IMPLICIT("implicit"),
-    PASSWORD("password"),
-    REFRESH_TOKEN("refresh_token"),
-    CLIENT_CREDENTIALS("client_credentials"),
-    JWT_BEARER("urn:ietf:params:oauth:grant-type:jwt-bearer");
+    public static final String RS256 = "RS256";
 
-    private String grantType;
+    public static final String RS384 = "RS384";
 
-    GrantType(String grantType) {
-        this.grantType = grantType;
-    }
-
-    @Override
-    public String toString() {
-        return grantType;
-    }
+    public static final String RS512 = "RS512";
 }
