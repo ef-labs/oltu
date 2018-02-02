@@ -26,7 +26,7 @@
 
   <groupId>org.apache.oltu</groupId>
   <artifactId>org.apache.oltu.reactor</artifactId>
-  <version>1-SNAPSHOT</version>
+  <version>1-EF1</version>
   <packaging>pom</packaging>
 
   <name>Apache Oltu - Reactor</name>
@@ -68,6 +68,7 @@
     <url>https://github.com/ef-labs/oltu</url>
     <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
     <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
+    <tag>org.apache.oltu.reactor-1-EF1</tag>
   </scm>
 
 </project>
