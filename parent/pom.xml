@@ -348,6 +348,14 @@
   </ciManagement>
   <distributionManagement>
     <downloadUrl>https://oltu.apache.org/download.html</downloadUrl>
+    <repository>
+      <id>etown-nexus-releases</id>
+      <url>https://nexus-bos.englishtown.com/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>etown-nexus-snapshots</id>
+      <url>https://nexus-bos.englishtown.com/content/repositories/snapshots</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <properties>
