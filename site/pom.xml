@@ -36,9 +36,9 @@
   <url>https://oltu.apache.org/</url>
 
   <scm>
-    <url>https://svn.apache.org/viewvc/oltu/trunk/site</url>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/site</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/site</developerConnection>
+    <url>https://github.com/ef-labs/oltu</url>
+    <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
+    <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
   </scm>
 
   <properties>

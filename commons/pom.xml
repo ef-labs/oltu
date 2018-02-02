@@ -34,9 +34,9 @@
   <description>Shared utilities across multiple Apache Oltu modules</description>
 
   <scm>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/commons</developerConnection>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/commons</connection>
-    <url>https://svn.apache.org/repos/asf/oltu/trunk/commons</url>
+    <url>https://github.com/ef-labs/oltu</url>
+    <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
+    <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
   </scm>
 
   <distributionManagement>

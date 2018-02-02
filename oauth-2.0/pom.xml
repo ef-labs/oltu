@@ -33,9 +33,9 @@
   <name>Apache Oltu - OAuth 2.0</name>
 
   <scm>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/oauth-2.0</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/oauth-2.0</developerConnection>
-    <url>https://svn.apache.org/repos/asf/oltu/trunk/oauth-2.0</url>
+    <url>https://github.com/ef-labs/oltu</url>
+    <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
+    <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
   </scm>
 
   <modules>

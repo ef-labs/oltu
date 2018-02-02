@@ -64,4 +64,10 @@
     </snapshotRepository>
   </distributionManagement>
 
+  <scm>
+    <url>https://github.com/ef-labs/oltu</url>
+    <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
+    <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
+  </scm>
+
 </project>

@@ -324,9 +324,9 @@
   </mailingLists>
 
   <scm>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/parent</developerConnection>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/parent</connection>
-    <url>https://svn.apache.org/repos/asf/oltu/trunk/parent</url>
+    <url>https://github.com/ef-labs/oltu</url>
+    <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
+    <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
   </scm>
   <issueManagement>
     <system>JIRA</system>

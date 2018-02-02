@@ -33,9 +33,9 @@
   <name>Apache Oltu - OpenId Connect</name>
 
   <scm>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/openid-connect</developerConnection>
-    <connection>scm:svn:https://svn.apache.org/repos/asf/oltu/trunk/openid-connect</connection>
-    <url>https://svn.apache.org/repos/asf/oltu/trunk/openid-connect</url>
+    <url>https://github.com/ef-labs/oltu</url>
+    <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
+    <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
   </scm>
 
   <distributionManagement>
