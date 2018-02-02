@@ -21,13 +21,13 @@
   <parent>
     <groupId>org.apache.oltu</groupId>
     <artifactId>org.apache.oltu.parent</artifactId>
-    <version>5-EF1</version>
+    <version>5-SNAPSHOT</version>
     <relativePath>../parent</relativePath>
   </parent>
 
   <groupId>org.apache.oltu.oauth2</groupId>
   <artifactId>org.apache.oltu.oauth2.parent</artifactId>
-  <version>1.0.3-EF1</version>
+  <version>1.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Oltu - OAuth 2.0</name>
@@ -36,7 +36,7 @@
     <url>https://github.com/ef-labs/oltu</url>
     <connection>scm:git:git://github.com/ef-labs/oltu.git</connection>
     <developerConnection>scm:git:git@github.com:ef-labs/oltu.git</developerConnection>
-    <tag>org.apache.oltu.reactor-1-EF1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <modules>
